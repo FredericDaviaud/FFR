@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
-import cho.com.ffr.utils.BufferUtils;
+import com.cho.ffr.utils.BufferUtils;
 
 public class Texture {
 

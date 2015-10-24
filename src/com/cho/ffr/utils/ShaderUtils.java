@@ -1,4 +1,4 @@
-package cho.com.ffr.utils;
+package com.cho.ffr.utils;
 
 import static org.lwjgl.opengl.GL20.*;
 
@@ -22,7 +22,7 @@ public class ShaderUtils {
      * @return shader
      */
     public static int load(String vertexPath, String fragmentPath) {
-        return create (FileUtils.loadFileAsString(vertexPath),
+        return create(FileUtils.loadFileAsString(vertexPath),
                 FileUtils.loadFileAsString(fragmentPath));
     }
 

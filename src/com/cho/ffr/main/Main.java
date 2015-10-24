@@ -29,16 +29,29 @@ import static org.lwjgl.opengl.GL11.glClear;
 import static org.lwjgl.opengl.GL11.glClearColor;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 
-public class Main {
+import com.cho.ffr.logger.MyLogger;
+import com.cho.ffr.utils.ShaderUtils;
 
+import static org.lwjgl.opengl.GL20.*;
+import static org.lwjgl.opengl.GL30.*;
+
+public class Main {
+    
+    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+    private static final int WINDOW_WIDTH = 1280;
     private static final int WINDOW_HEIGHT = 720;
-    private static final int WINDOW_WIDTH= 1280;
+    private static final String SHADER_VERTEX_PATH = "shaders/shader.vertex";
+    private static final String SHADER_FRAGMENT_PATH = "shaders/shader.fragment";
     private GLFWErrorCallback errorCallback;
     private GLFWKeyCallback keyCallback;
 
@@ -98,12 +111,18 @@ public class Main {
         glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         while (glfwWindowShouldClose(window) == GL_FALSE) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            int vertexArrays = glGenVertexArrays();
+            glBindVertexArray(vertexArrays);
+            int shader = ShaderUtils.load(SHADER_VERTEX_PATH, SHADER_FRAGMENT_PATH);
+            LOGGER.log(Level.FINE, "Shader: " + shader);
+            glUseProgram(shader);
             glfwSwapBuffers(window);
             glfwPollEvents();
         }
     }
 
     public static void main(String[] args) {
+        MyLogger.init();
         new Main().run();
     }
 }

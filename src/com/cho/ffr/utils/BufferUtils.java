@@ -1,4 +1,4 @@
-package cho.com.ffr.utils;
+package com.cho.ffr.utils;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -17,7 +17,7 @@ public class BufferUtils {
      * @return byte buffer
      */
     public static ByteBuffer createByteBuffer(byte[] array) {
-        ByteBuffer result = ByteBuffer.allocate(array.length).order(ByteOrder.nativeOrder());
+        ByteBuffer result = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
         result.put(array).flip();
         return result;
     }
@@ -27,8 +27,8 @@ public class BufferUtils {
      * @param array float array
      * @return float buffer
      */
-    public static FloatBuffer createFlaotBuffer(float[] array) {
-        FloatBuffer result = ByteBuffer.allocate(array.length << 2).order(ByteOrder.nativeOrder()).asFloatBuffer();
+    public static FloatBuffer createFloatBuffer(float[] array) {
+        FloatBuffer result = ByteBuffer.allocateDirect(array.length << 2).order(ByteOrder.nativeOrder()).asFloatBuffer();
         result.put(array).flip();
         return result;
     }
@@ -39,7 +39,7 @@ public class BufferUtils {
      * @return int buffer
      */
     public static IntBuffer createIntBuffer(int[] array) {
-        IntBuffer result = ByteBuffer.allocate(array.length << 2).order(ByteOrder.nativeOrder()).asIntBuffer();
+        IntBuffer result = ByteBuffer.allocateDirect(array.length << 2).order(ByteOrder.nativeOrder()).asIntBuffer();
         result.put(array).flip();
         return result;
     }

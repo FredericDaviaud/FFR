@@ -1,4 +1,4 @@
-package cho.com.ffr.maths;
+package com.cho.ffr.maths;
 
 public class Vector3f {
 

@@ -1,4 +1,4 @@
-package cho.com.ffr.utils;
+package com.cho.ffr.utils;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
