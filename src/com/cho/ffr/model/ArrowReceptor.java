@@ -10,14 +10,18 @@ public class ArrowReceptor {
     
     private Animation[] animations;
     private SpriteSheet spriteSheet;
+    private float x;
+    private float y;
     private int animationInterval;
     private int angle;
     private boolean isPressed;
     
-    public ArrowReceptor(SpriteSheet spriteSheet, int animationInterval, int angle) {
+    public ArrowReceptor(SpriteSheet spriteSheet, int animationInterval, int angle, float x, float y) {
         this.spriteSheet = spriteSheet;
         this.angle = angle;
         this.animationInterval = animationInterval;
+        this.x = x;
+        this.y = y;
     }
 
     public void init() {
@@ -26,9 +30,13 @@ public class ArrowReceptor {
     }
 
     public void render(Graphics graphics) {
-        graphics.drawAnimation(animations[0], 0, 0);
+        graphics.drawAnimation(animations[0], x, y);
         if (isPressed) {
-            graphics.drawAnimation(animations[1], 0, 0);
+            graphics.drawAnimation(animations[1], x, y);
         }
+    }
+    
+    public void update() {
+        
     }
 }

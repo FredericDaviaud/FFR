@@ -1,26 +1,33 @@
 package com.cho.ffr.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.newdawn.slick.Graphics;
+
 public class ArrowReceptorPanel {
     
-    private ArrowReceptor[] arrowReceptors = new ArrowReceptor[4];
+    private List<ArrowReceptor> arrowReceptors = new ArrayList<ArrowReceptor>();
     
-    public ArrowReceptorPanel(ArrowReceptor left, ArrowReceptor down,
-            ArrowReceptor up, ArrowReceptor right) {
-        arrowReceptors[0] = left;
-        arrowReceptors[0] = down;
-        arrowReceptors[0] = up;
-        arrowReceptors[0] = right;
+    public ArrowReceptorPanel(List<ArrowReceptor> arrowReceptors) {
+        this.arrowReceptors = arrowReceptors;
     }
     
     public void init() {
-        
+        for (ArrowReceptor arrowReceptor : arrowReceptors) {
+            arrowReceptor.init();
+        }
     }
     
-    public void render() {
-        
+    public void render(Graphics graphics) {
+        for (ArrowReceptor arrowReceptor : arrowReceptors) {
+            arrowReceptor.render(graphics);
+        }
     }
     
     public void update() {
-        
+        for (ArrowReceptor arrowReceptor : arrowReceptors) {
+            arrowReceptor.update();
+        }
     }
 } 

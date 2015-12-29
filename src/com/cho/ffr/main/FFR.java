@@ -1,5 +1,7 @@
 package com.cho.ffr.main;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,15 +14,16 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
-import com.cho.ffr.loader.ArrowReceptorLoader;
+import com.cho.ffr.model.ArrowReceptor;
+import com.cho.ffr.model.ArrowReceptorPanel;
 
 public class FFR extends BasicGame {
 
     private static final String ARROW_RECEPTOR_SPRITE_SHEET = "res/arrow_receptor/arrow_receptor_sheet.png";
+    
     private GameContainer gameContainer;
-    private Animation[] arrowReceptorAnimations = new Animation[8];
     private boolean arrowPressed;
-
+    private ArrowReceptorPanel arrowReceptorPanel;
     public FFR(String gameName) {
         super(gameName);
     }
@@ -29,18 +32,23 @@ public class FFR extends BasicGame {
     public void init(GameContainer gameContainer) throws SlickException {
         this.gameContainer = gameContainer;
         SpriteSheet arrowsReceptorSpriteSheet = new SpriteSheet(ARROW_RECEPTOR_SPRITE_SHEET, 143, 140);
-        ArrowReceptorLoader arrowReceptorLoader = new ArrowReceptorLoader(arrowsReceptorSpriteSheet, 30);
-        arrowReceptorAnimations = arrowReceptorLoader.load();
+        List<ArrowReceptor> arrowReceptors = new ArrayList<ArrowReceptor>();
+        arrowReceptors.add(new ArrowReceptor(arrowsReceptorSpriteSheet, 30, 270, 300, 300)); //left
+        arrowReceptors.add(new ArrowReceptor(arrowsReceptorSpriteSheet, 30, 180, 400, 300)); //down
+        arrowReceptors.add(new ArrowReceptor(arrowsReceptorSpriteSheet, 30, 0, 500, 300));   //up
+        arrowReceptors.add(new ArrowReceptor(arrowsReceptorSpriteSheet, 30, 90, 600, 300));  //right
+        arrowReceptorPanel = new ArrowReceptorPanel(arrowReceptors);
+        arrowReceptorPanel.init();
     }
 
     @Override
-    public void update(GameContainer contain, int i) throws SlickException {
-
+    public void render(GameContainer contain, Graphics graphics) throws SlickException {
+        arrowReceptorPanel.render(graphics);
     }
 
     @Override
-    public void render(GameContainer contain, Graphics g) throws SlickException {
-        g.drawAnimation(arrowReceptorAnimations, 300, 300);
+    public void update(GameContainer contain, int delta) throws SlickException {
+
     }
 
     @Override

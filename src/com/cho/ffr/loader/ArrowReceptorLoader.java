@@ -19,7 +19,7 @@ public class ArrowReceptorLoader {
     
     /**
      * Load and return the arrow receptor animation
-     * @return
+     * @return the animations
      */
     public Animation[] load() {
         int count = spriteSheet.getHorizontalCount();
